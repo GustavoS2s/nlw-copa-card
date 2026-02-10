@@ -11,7 +11,6 @@
 
   //zen mode
   "zenMode.centerLayout": false,
-  "zenMode.hideTabs": true,
   "zenMode.hideStatusBar": true,
   "zenMode.hideActivityBar": true,
   "zenMode.silentNotifications": true,
@@ -20,9 +19,8 @@
 
   // light editor
   "breadcrumbs.enabled": false,
-  "editor.minimap.enabled": false,
-  "workbench.activityBar.visible": false,
-  "workbench.statusBar.visible": false,
+  "editor.minimap.enabled": true,
+  "workbench.statusBar.visible": true,
 
   // explorer
   "explorer.compactFolders": false,
@@ -47,5 +45,7 @@
     }
   },
   "terminal.integrated.defaultProfile.windows": "Git Bash",
-  "window.zoomLevel": 1
+  "window.zoomLevel": 1,
+  "workbench.activityBar.location": "top",
+  "zenMode.showTabs": "single"
 }

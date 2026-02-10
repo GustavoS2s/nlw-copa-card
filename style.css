@@ -1,74 +1,154 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body * {
-  font-family: "Roboto";
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  background: linear-gradient(150deg, #0f2b05, #000000);
-  height: 100vh;
-
-  text-align: center;
+    background: linear-gradient(150deg, #0f2b05, #000000);
+    min-height: 100vh;
+    font-family: "Roboto", sans-serif;
+    text-align: center;
+    color: #ffffff;
+    padding-bottom: 50px;
 }
 
 header {
-  padding: 75px 0;
+    padding: 60px 0;
+}
+
+h2 {
+    margin: 40px 0 20px;
+    font-size: 2rem;
+    text-transform: uppercase;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.cards-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .card {
-  display: inline-block;
-  width: 354px;
-  height: 508px;
 
-  background-image: url(./assets/bg-explorer.svg);
+    background-size: cover;
+    background-position: center;
+    border-radius: 15px;
+    width: 200px;
+    height: 320px;
+    padding: 20px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: appear 0.4s forwards;
+    
 
-  cursor: pointer;
-
-  opacity: 0;
-  transform: translateY(-100px);
-  animation: appear 0.4s forwards;
-
-  user-select: none;
-  -webkit-user-select: none;
+    border: 4px solid transparent; 
 }
 
-.card > img {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 4px solid #f7dd43;
-  margin-top: 115px;
 
-  pointer-events: none;
-  user-select: none;
-  -webkit-user-select: none;
+.card.brasil {
+    background-color: #009c3b; 
+    border-color: #ffdf00;     
+    background-blend-mode: soft-light; 
+}
+
+.card.argentina {
+    background-color: #74acdf; 
+    border-color: #ffffff;     
+}
+
+.card.franca {
+    background-color: #0055a4; 
+    border-color: #ef4135;     
+}
+
+.card.alemanha {
+    background-color: #000000; 
+    border-color: #ffce00;     
+}
+
+.card:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.bandeira {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.foto-container {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    border: 4px solid;
+    overflow: hidden;
+    background: #fff;
+}
+
+.foto-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .info {
-  margin-top: 98px;
-  color: white;
-  margin-left: 70px;
-  text-align: left;
+    margin-top: 15px;
+    text-align: center;
 }
 
 .info h1 {
-  font-size: 18px;
-  line-height: 140%;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
 }
 
 .info p {
-  font-size: 14px;
-  line-height: 160%;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    opacity: 0.9;
 }
 
+.numero {
+    margin-top: 10px;
+    font-weight: bold;
+    padding: 2px 10px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+
+.card.brasil { background-color: #009c3b; border: 4px solid #ffdf00; }
+.card.brasil .foto-container { border-color: #002776; }
+.card.brasil .info h1 { color: #ffdf00; }
+.card.brasil .numero { background: #ffdf00; color: #002776; }
+
+.card.argentina { background-color: #74acdf; border: 4px solid #ffffff; }
+.card.argentina .foto-container { border-color: #ffd700; }
+.card.argentina .info h1 { color: #ffffff; }
+.card.argentina .numero { background: #ffd700; color: #000000; }
+
+.card.franca { background-color: #0055a4; border: 4px solid #ef4135; }
+.card.franca .foto-container { border-color: #ffffff; }
+.card.franca .info h1 { color: #ffffff; }
+.card.franca .numero { background: #ffffff; color: #0055a4; }
+
+.card.alemanha { background-color: #000000; border: 4px solid #ffce00; }
+.card.alemanha .foto-container { border-color: #dd0000; }
+.card.alemanha .info h1 { color: #ffce00; }
+.card.alemanha .numero { background: #dd0000; color: #ffffff; }
+
 @keyframes appear {
-  to {
-    opacity: 1;
-    transform: translateY(0px);
-  }
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
