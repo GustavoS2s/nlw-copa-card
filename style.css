@@ -1,154 +1,84 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #09090a; min-height: 100vh; font-family: 'Roboto', sans-serif; color: #fff; }
+
+header { padding: 40px; text-align: center; }
+.header-actions { display: flex; gap: 15px; justify-content: center; margin-top: 20px; }
+
+button {
+    background: #8257e5; color: white; border: none; padding: 12px 24px;
+    border-radius: 4px; font-weight: 700; cursor: pointer; transition: 0.3s;
+}
+button:hover { background: #9466ff; transform: scale(1.05); }
+
+#app { padding: 20px; max-width: 1450px; margin: 0 auto; }
+
+.selection-section h2 { 
+    margin: 40px 0 20px; text-transform: uppercase; letter-spacing: 2px; 
+    border-bottom: 2px solid #ffdf00; display: inline-block; 
 }
 
-body {
-    background: linear-gradient(150deg, #0f2b05, #000000);
-    min-height: 100vh;
-    font-family: "Roboto", sans-serif;
-    text-align: center;
-    color: #ffffff;
-    padding-bottom: 50px;
+/* --- GRID DE 5 COLUNAS --- */
+.cards-wrapper { 
+    display: grid; 
+    grid-template-columns: repeat(5, 1fr); /* FORÇA 5 COLUNAS */
+    gap: 20px; 
+    justify-items: center;
+    margin-bottom: 50px;
 }
 
-header {
-    padding: 60px 0;
+/* Responsividade para telas menores */
+@media (max-width: 1200px) { .cards-wrapper { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 768px) { .cards-wrapper { grid-template-columns: repeat(1, 1fr); } }
+
+/* CARD ENGINE */
+.card-container { width: 250px; height: 370px; perspective: 1000px; }
+.card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; }
+.card-container:hover .card-inner { transform: rotateY(180deg); }
+
+.card-front, .card-back {
+    position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 20px;
+    display: flex; flex-direction: column; align-items: center; overflow: hidden;
 }
 
-h2 {
-    margin: 40px 0 20px;
-    font-size: 2rem;
-    text-transform: uppercase;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-    display: inline-block;
-    padding-bottom: 5px;
+.card-front { 
+    background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
+    background-size: 14px 14px;
 }
 
-.cards-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 25px;
-    justify-content: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.card {
-
-    background-size: cover;
-    background-position: center;
-    border-radius: 15px;
-    width: 200px;
-    height: 320px;
-    padding: 20px;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-    animation: appear 0.4s forwards;
-    
-
-    border: 4px solid transparent; 
-}
-
-
-.card.brasil {
-    background-color: #009c3b; 
-    border-color: #ffdf00;     
-    background-blend-mode: soft-light; 
-}
-
-.card.argentina {
-    background-color: #74acdf; 
-    border-color: #ffffff;     
-}
-
-.card.franca {
-    background-color: #0055a4; 
-    border-color: #ef4135;     
-}
-
-.card.alemanha {
-    background-color: #000000; 
-    border-color: #ffce00;     
-}
-
-.card:hover {
-    transform: scale(1.05) translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-}
-
-.bandeira {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.foto-container {
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
-    border: 4px solid;
-    overflow: hidden;
-    background: #fff;
-}
-
-.foto-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.info {
-    margin-top: 15px;
-    text-align: center;
-}
-
-.info h1 {
-    font-size: 1.1rem;
-    margin-bottom: 5px;
-}
-
-.info p {
-    font-size: 0.85rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    opacity: 0.9;
+.bandeira-card {
+    position: absolute; top: 15px; right: 15px; width: 35px;
+    border-radius: 3px; box-shadow: 0 2px 5px rgba(0,0,0,0.5); z-index: 3;
 }
 
 .numero {
-    margin-top: 10px;
-    font-weight: bold;
-    padding: 2px 10px;
-    border-radius: 4px;
-    font-size: 0.9rem;
+    position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.6);
+    padding: 4px 8px; border-radius: 8px; font-weight: 900; font-size: 0.75rem;
 }
 
-
-.card.brasil { background-color: #009c3b; border: 4px solid #ffdf00; }
-.card.brasil .foto-container { border-color: #002776; }
-.card.brasil .info h1 { color: #ffdf00; }
-.card.brasil .numero { background: #ffdf00; color: #002776; }
-
-.card.argentina { background-color: #74acdf; border: 4px solid #ffffff; }
-.card.argentina .foto-container { border-color: #ffd700; }
-.card.argentina .info h1 { color: #ffffff; }
-.card.argentina .numero { background: #ffd700; color: #000000; }
-
-.card.franca { background-color: #0055a4; border: 4px solid #ef4135; }
-.card.franca .foto-container { border-color: #ffffff; }
-.card.franca .info h1 { color: #ffffff; }
-.card.franca .numero { background: #ffffff; color: #0055a4; }
-
-.card.alemanha { background-color: #000000; border: 4px solid #ffce00; }
-.card.alemanha .foto-container { border-color: #dd0000; }
-.card.alemanha .info h1 { color: #ffce00; }
-.card.alemanha .numero { background: #dd0000; color: #ffffff; }
-
-@keyframes appear {
-    from { opacity: 0; transform: translateY(-30px); }
-    to { opacity: 1; transform: translateY(0); }
+.foto-container {
+    width: 130px; height: 130px; border-radius: 50%; border: 3px solid #ffdf00;
+    margin-top: 50px; z-index: 2; background: #121214; overflow: hidden;
 }
+.foto-container img { width: 100%; height: 100%; object-fit: cover; }
+
+.info {
+    margin-top: auto; width: 100%; background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(8px); padding: 15px; text-align: left;
+}
+.info h1 { font-size: 1.1rem; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.info p { font-size: 0.8rem; opacity: 0.8; }
+.info .gols-label { color: #ffdf00; font-weight: 700; font-size: 0.85rem; display: block; margin-top: 5px; }
+
+/* CORES */
+.brasil { background-color: #006437; }
+.argentina { background-color: #1e3a5a; }
+.franca { background-color: #050a30; }
+.alemanha { background-color: #1a1a1a; }
+
+/* VERSO E MODAL */
+.card-back { background: #121214; transform: rotateY(180deg); justify-content: center; gap: 20px; border: 2px solid #8257e5; }
+.modal { display: none; position: fixed; z-index: 10; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; }
+.modal-content { background: #121214; padding: 40px; border-radius: 15px; width: 350px; position: relative; text-align: center; }
+.stats-bar { width: 100%; height: 10px; background: #333; border-radius: 5px; margin-top: 15px; overflow: hidden; }
+.bar-fill { height: 100%; background: #ffdf00; width: 0; transition: 1s; }
+.close { position: absolute; right: 15px; top: 10px; cursor: pointer; font-size: 24px; }
