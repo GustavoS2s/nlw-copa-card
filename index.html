@@ -3,32 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Copa Cards 2026 - Premium</title>
+    <title>Copa Memory 2026 - Seleções</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Copa Cards 2026</h1>
-        <div class="header-actions">
-            <button onclick="embaralharCards()">🎲 Embaralhar</button>
-            <button onclick="criarCards()">🚩 Restaurar</button>
+        <div class="header-top">
+            <h1>Copa Memory 2026</h1>
+            <div class="seletores-pais">
+                <img src="./assets/brasil.jpg" onclick="mudarSelecao('brasil')" title="Brasil">
+                <img src="./assets/argentina.jpg" onclick="mudarSelecao('argentina')" title="Argentina">
+                <img src="./assets/franca.jpg" onclick="mudarSelecao('franca')" title="França">
+                <img src="./assets/alemanha.jpg" onclick="mudarSelecao('alemanha')" title="Alemanha">
+            </div>
         </div>
+
+        <div class="placar">
+            <div id="p1-area" class="player-score active">
+                <p>JOGADOR 1</p>
+                <span id="score1">0</span>
+            </div>
+            <div id="p2-area" class="player-score">
+                <p>JOGADOR 2</p>
+                <span id="score2">0</span>
+            </div>
+        </div>
+        <p id="status-jogo">Escolha uma bandeira para começar!</p>
     </header>
 
     <main id="app"></main>
 
-    <div id="modal" class="modal" onclick="fecharModal()">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close" onclick="fecharModal()">&times;</span>
-            <div id="modal-body">
-                <h2 id="modal-nome"></h2>
-                <p id="modal-info"></p>
-                <div class="stats-bar"><div class="bar-fill" id="modal-bar"></div></div>
-            </div>
-        </div>
-    </div>
     <script src="script.js"></script>
 </body>
 </html>
